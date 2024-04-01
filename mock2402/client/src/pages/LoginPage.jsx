@@ -1,12 +1,19 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
+    const loginAction = () =>{
+        console.log("LoginAction")
+        navigate('/home')
+    }
     return (
         <div className='flex items-center justify-center w-screen h-screen bg-green-600'>
 
             <div className='flex flex-col w-1/4 h-auto rounded-lg'>
 
-                <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md h-2/3">
+                <form className="px-[32px] pt-6 pb-8 mb-4 bg-white rounded shadow-md h-2/3">
                     <div className="mb-4">
                         <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                             Email
@@ -30,7 +37,7 @@ const LoginPage = () => {
                         />
                     </div>
                     <div className="flex items-center justify-between">
-                        <button
+                        <button onClick={loginAction}
                             className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                             type="button"
                         >
