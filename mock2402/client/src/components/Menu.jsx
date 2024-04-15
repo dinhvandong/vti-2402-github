@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuItem from './MenuItem'
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { MdAccountCircle } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const Menu = () => {
+  const navigate = useNavigate();
+
+  const gotoLogin=()=>{
+    navigate('/login');
+
+  }
+
+  const [isLogin, setIsLogin] = useState(false);
 
   const menuItems = [
 
@@ -105,9 +115,16 @@ const Menu = () => {
             </a>
           </li>
           <li>
-            <a className="px-2 py-1 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
-              Đăng Nhập
-            </a>
+            {
+
+              isLogin === false ? <a onClick={gotoLogin} className="px-2 py-1 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
+                Đăng Nhập
+              </a> : <a className="flex items-center justify-center px-2 py-1 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
+                
+               <MdAccountCircle className='mr-5'/> Nguyen Van An,Welcome
+              </a>
+            }
+
           </li>
         </ul>
       </nav>
