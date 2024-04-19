@@ -4,15 +4,17 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdAccountCircle } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
   const navigate = useNavigate();
+
+  const isLogin = props.isLogin;
 
   const gotoLogin=()=>{
     navigate('/login');
 
   }
 
-  const [isLogin, setIsLogin] = useState(false);
+  //const [isLogin, setIsLogin] = useState(false);
 
   const menuItems = [
 

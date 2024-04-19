@@ -49,8 +49,9 @@ public class AuthController {
         Optional<User> user = userService.findByEmail((loginRequest.getEmail()));
         if (user.isEmpty() || !PasswordEncoder.getInstance().matches(loginRequest.getPassword(), user.get().getPassword())) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new ResponseObject(201, user, "Token invalid"));
+                    .body(new ResponseObject(201, user, "Email or Password incorrect"));
         }
+
         String token = authService.loginWithEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
         JwtTokenStore.getInstance().storeToken(loginRequest.getEmail(), token);
         return ResponseEntity.status(HttpStatus.OK).body
