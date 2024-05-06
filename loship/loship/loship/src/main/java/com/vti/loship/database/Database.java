@@ -6,6 +6,7 @@ import com.vti.loship.models.User;
 import com.vti.loship.repositories.CategoryRepository;
 import com.vti.loship.repositories.UserRepository;
 import com.vti.loship.security.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class Database {
+
+    @Autowired
+    SequenceGeneratorService sequenceGeneratorService;
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository,
                                    CategoryRepository categoryRepository) {
@@ -22,15 +26,16 @@ public class Database {
             @Override
             public void run(String... args) throws Exception {
                 User user = new User();
-                user.setId(1L);
+              //  user.setId(1L);
+                Long id = sequenceGeneratorService.generateSequence(User.SEQUENCE_NAME);
+                user.setId(id);
                 user.setEmail("admin@gmail.com");
                 user.setPhone("84965741051");
                 user.setPassword(PasswordEncoder.getInstance().encodePassword("A123456a@"));
                 user.setStatus(1);
-
+                userRepository.deleteAll();
                 if(userRepository.findAll().isEmpty())
                     userRepository.insert(user);
-
                 categoryRepository.deleteAll();
 
 //                Category category1 = new Category();

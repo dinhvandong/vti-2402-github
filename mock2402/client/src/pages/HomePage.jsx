@@ -17,7 +17,7 @@ const HomePage = () => {
         const checkAuthentication = async () => {
           const authenticated = await isAuthenticated();
           if (!authenticated) {
-             navigate('/login');
+            // navigate('/login');
              setIsLogin(false);
           } else {
 

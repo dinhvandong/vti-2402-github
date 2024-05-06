@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MenuItem from './MenuItem'
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdAccountCircle } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider';
+import { IoMdLogOut } from "react-icons/io";
 
 const Menu = (props) => {
   const navigate = useNavigate();
@@ -11,9 +13,18 @@ const Menu = (props) => {
 
   const gotoLogin=()=>{
     navigate('/login');
-
   }
 
+  const {userInfo, logout} = useContext(AuthContext);
+  console.log("userInfor:", userInfo);
+
+  const logoutRequest = ()=>{
+    localStorage.removeItem('token');
+    logout();
+
+    window.location.reload();
+
+  }
   //const [isLogin, setIsLogin] = useState(false);
 
   const menuItems = [
@@ -121,10 +132,21 @@ const Menu = (props) => {
 
               isLogin === false ? <a onClick={gotoLogin} className="px-2 py-1 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
                 Đăng Nhập
-              </a> : <a className="flex items-center justify-center px-2 py-1 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
+              </a> : 
+
+              <div className='flex justify-center'>
+
+<a className="flex items-center justify-center px-2 py-2 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
                 
-               <MdAccountCircle className='mr-5'/> Nguyen Van An,Welcome
-              </a>
+                <MdAccountCircle className='mr-5'/> {userInfo.email},Welcome
+               </a>
+
+               <a onClick={logoutRequest} className="flex items-center justify-center px-2 py-2 font-bold text-gray-900 bg-gray-200 border-2 rounded-lg hover:text-red-600" href="#">
+                
+                <IoMdLogOut className='mr-5 text-orange-500'/> Logout
+               </a>
+              </div>
+             
             }
 
           </li>

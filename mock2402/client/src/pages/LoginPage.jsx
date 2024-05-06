@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { isAuthenticated, loginRequest } from '../services/api';
+import { isAuthenticated, login, loginRequest } from '../services/api';
+import { AuthContext } from '../AuthProvider';
 
 const LoginPage = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
-    
+   const {loginRequest} =  useContext(AuthContext);
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -22,10 +21,14 @@ const LoginPage = () => {
     e.preventDefault();
     console.log("email:", email);
     console.log("password:", password);
-    const result = await loginRequest(email, password);
+    const result = await login(email, password);
     if(result.success===200){
       const token = result.data.message;
       const user = result.data
+
+      loginRequest(token, user);
+
+
       //login(token, user);
       navigate('/home');
       

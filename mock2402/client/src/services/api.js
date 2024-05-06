@@ -36,7 +36,7 @@ export const isAuthenticated = async () => {
   };
 
 
-export const loginRequest = async (email, password) => {
+export const login = async (email, password) => {
 
   const data = {
     // JSON data to be sent in the request body
