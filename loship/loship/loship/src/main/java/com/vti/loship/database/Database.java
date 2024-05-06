@@ -33,31 +33,31 @@ public class Database {
 
                 categoryRepository.deleteAll();
 
-                Category category1 = new Category();
-                category1.setId(1L);
-                category1.setName("Ăn trưa");
-                category1.setActive(true);
-                category1.setIcon("http://localhost:8080/api/images/1");
-
-
-                Category category2 = new Category();
-                category2.setId(2L);
-                category2.setName("Ăn sáng");
-                category2.setActive(true);
-                category2.setIcon("http://localhost:8080/api/images/1");
-
-
-                Category category3 = new Category();
-                category3.setId(3L);
-                category3.setName("Ăn tối");
-                category3.setActive(true);
-                category3.setIcon("http://localhost:8080/api/images/1");
-
-                if(categoryRepository.findAll().isEmpty()){
-                    categoryRepository.insert(category1);
-                    categoryRepository.insert(category2);
-                    categoryRepository.insert(category3);
-                }
+//                Category category1 = new Category();
+//                category1.setId(1L);
+//                category1.setName("Ăn trưa");
+//                category1.setActive(true);
+//                category1.setIcon("http://localhost:8080/api/images/1");
+//
+//
+//                Category category2 = new Category();
+//                category2.setId(2L);
+//                category2.setName("Ăn sáng");
+//                category2.setActive(true);
+//                category2.setIcon("http://localhost:8080/api/images/1");
+//
+//
+//                Category category3 = new Category();
+//                category3.setId(3L);
+//                category3.setName("Ăn tối");
+//                category3.setActive(true);
+//                category3.setIcon("http://localhost:8080/api/images/1");
+//
+//                if(categoryRepository.findAll().isEmpty()){
+//                    categoryRepository.insert(category1);
+//                    categoryRepository.insert(category2);
+//                    categoryRepository.insert(category3);
+//                }
             }
         };
     }
