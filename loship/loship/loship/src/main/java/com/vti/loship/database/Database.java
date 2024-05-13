@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class Database {
-
     @Autowired
     SequenceGeneratorService sequenceGeneratorService;
     @Bean
@@ -33,10 +32,10 @@ public class Database {
                 user.setPhone("84965741051");
                 user.setPassword(PasswordEncoder.getInstance().encodePassword("A123456a@"));
                 user.setStatus(1);
-                userRepository.deleteAll();
+              //  userRepository.deleteAll();
                 if(userRepository.findAll().isEmpty())
                     userRepository.insert(user);
-                categoryRepository.deleteAll();
+               // categoryRepository.deleteAll();
 
 //                Category category1 = new Category();
 //                category1.setId(1L);
