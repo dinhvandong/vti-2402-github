@@ -1,6 +1,8 @@
 import React from 'react'
 import { IoMdArrowDropdown } from "react-icons/io";
 import flagVN from '../assets/flag_vietnam.png';
+import { BsCart4 } from "react-icons/bs";
+
 const Header = () => {
   return (
     <div className=' text-[12px] flex items-center justify-center w-full h-[50px] '>
@@ -54,6 +56,17 @@ const Header = () => {
       </div>
       <div className='ml-5'>
         <button>Loship Hỏi đáp</button>
+      </div>
+
+      <div className='flex ml-5'>
+
+      <BsCart4 className='w-8 h-8 text-orange-700' />
+
+      <div className='absolute flex text-[8px] items-center justify-center w-5 h-5 bg-green-500 rounded-full'>
+        <p className='text-white'>10</p>
+
+      </div>
+
       </div>
 
 
