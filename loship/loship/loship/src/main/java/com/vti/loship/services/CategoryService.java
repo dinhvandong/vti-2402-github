@@ -72,26 +72,90 @@ public class CategoryService {
     // Nguyen Huy - Bui The Tuong - Vu Duc Chien
     public List<ProductGroup> findAllProductGroupByCategoryID(Long categoryID)
     {
-        return null;
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryID);
+        if(optionalCategory.isEmpty()) return null;
+
+        Category foundCategory = optionalCategory.get();
+        return foundCategory.getProductGroupList();
     }
 
     // DUC PHAN - DUONG - HUNG DANG
     public Category addProductGroup(Long categoryID, ProductGroup productGroup){
-        return null;
+
+        Optional<Category> optional = categoryRepository.findById(categoryID);
+        if(optional.isEmpty()) return null;
+
+        Category foundCategory = optional.get();
+
+        List<ProductGroup> productGroupList = new ArrayList<>();
+        productGroupList = foundCategory.getProductGroupList();
+
+
+        Long id = sequenceGeneratorService.generateSequence(ProductGroup.SEQUENCE_NAME);
+        productGroup.setId(id);
+        productGroupList.add(productGroup);
+
+        foundCategory.setProductGroupList(productGroupList);
+        return categoryRepository.save(foundCategory);
     }
 
     // HUNGW, HUYNH, PHAM CONG SON
     public Category removeProductGroup(Long categoryID, Long productGroupID){
-        return null;
+
+        Optional<Category> optional = categoryRepository.findById(categoryID);
+        if(optional.isEmpty()) return null;
+
+        Category found = optional.get();
+
+        List<ProductGroup> productGroupList = new ArrayList<>();
+        productGroupList = found.getProductGroupList();
+
+        productGroupList.removeIf(productGroup -> productGroup.getId().equals(productGroupID));
+
+        found.setProductGroupList(productGroupList);
+
+        return categoryRepository.save(found);
     }
 
     // QUYEN DINH PHAM - TRINH
+    // CHIEN
     public Category updateProductGroup(Long categoryID, ProductGroup updateProductGroup){
-        return null;
+
+        Optional<Category> optional = categoryRepository.findById(categoryID);
+        if(optional.isEmpty()) return null;
+        Category found = optional.get();
+        List<ProductGroup> productGroupList  = found.getProductGroupList();
+        int count = 0;
+
+        for(ProductGroup p: productGroupList)
+        {
+            if(p.getId().equals(updateProductGroup.getId()))
+            {
+                //index
+                productGroupList.get(count).setName(updateProductGroup.getName());
+                productGroupList.get(count).setActive(updateProductGroup.isActive());
+                productGroupList.get(count).setCode(updateProductGroup.getCode());
+                productGroupList.get(count).setDesc(updateProductGroup.getDesc());
+            }
+            count  = count ++;
+        }
+
+        found.setProductGroupList(productGroupList);
+        return categoryRepository.save(found);
     }
 
     // DUC PHAN - DUONG - HUNG DANG
     public ProductGroup findProductGroupByID(Long categoryID, Long productGroupID){
+
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryID);
+        if(optionalCategory.isEmpty()) return null;
+
+        Category foundCategory = optionalCategory.get();
+        for(ProductGroup p: foundCategory.getProductGroupList()){
+            if(p.getId().equals(productGroupID)){
+                return p;
+            }
+        }
         return null;
     }
 }
