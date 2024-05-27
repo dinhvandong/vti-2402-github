@@ -19,6 +19,12 @@ public class User {
 
     private int status;
 
+
+
+    private Profile profile;
+
+
+
     public Long getId() {
         return id;
     }

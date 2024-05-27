@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "categories")
 public class Category {
     @Id
@@ -13,6 +15,13 @@ public class Category {
     private String name;
     private String icon;
     private boolean active;
+    private List<ProductGroup> productGroupList;
+    public List<ProductGroup> getProductGroupList() {
+        return productGroupList;
+    }
+    public void setProductGroupList(List<ProductGroup> productGroupList) {
+        this.productGroupList = productGroupList;
+    }
     public Long getId() {
         return id;
     }

@@ -3,6 +3,7 @@ package com.vti.loship.services;
 
 import com.vti.loship.database.SequenceGeneratorService;
 import com.vti.loship.models.Category;
+import com.vti.loship.models.ProductGroup;
 import com.vti.loship.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,21 +67,31 @@ public class CategoryService {
     public List<Category> findAll()
     {
         return categoryRepository.findAllByActive(true);
-//        // co nghia la lay ra tat ca cac ban ghi co gia tri active = true
-//        List<Category> listAll = categoryRepository.findAll();
-//        List<Category> returnList = new ArrayList<>();
-//        for(Category category: listAll)
-//        {
-//            if(category.isActive())
-//            {
-//                returnList.add(category);
-//            }
-//        }
-//        return returnList;
     }
 
+    // Nguyen Huy - Bui The Tuong - Vu Duc Chien
+    public List<ProductGroup> findAllProductGroupByCategoryID(Long categoryID)
+    {
+        return null;
+    }
 
+    // DUC PHAN - DUONG - HUNG DANG
+    public Category addProductGroup(Long categoryID, ProductGroup productGroup){
+        return null;
+    }
 
+    // HUNGW, HUYNH, PHAM CONG SON
+    public Category removeProductGroup(Long categoryID, Long productGroupID){
+        return null;
+    }
 
+    // QUYEN DINH PHAM - TRINH
+    public Category updateProductGroup(Long categoryID, ProductGroup updateProductGroup){
+        return null;
+    }
 
+    // DUC PHAN - DUONG - HUNG DANG
+    public ProductGroup findProductGroupByID(Long categoryID, Long productGroupID){
+        return null;
+    }
 }

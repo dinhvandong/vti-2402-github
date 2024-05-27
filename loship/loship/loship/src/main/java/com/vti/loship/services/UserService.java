@@ -1,6 +1,7 @@
 package com.vti.loship.services;
 
 import com.vti.loship.database.SequenceGeneratorService;
+import com.vti.loship.models.Cart;
 import com.vti.loship.models.User;
 import com.vti.loship.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,17 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
+    CartService cartService;
+    @Autowired
     SequenceGeneratorService sequenceGeneratorService;
 
     public User create(User newUser){
         Long id = sequenceGeneratorService.generateSequence(User.SEQUENCE_NAME);
         newUser.setId(id);
+
+        Cart cart = new Cart();
+        cart.setId(id);
+        cartService.create(cart);
         return userRepository.insert(newUser);
     }
 
