@@ -30,7 +30,7 @@ public interface OrderService {
     public List<ProductGroup> findTop10ProductGroup(Long startDate, Long endDate);
 
 // 4. TRINH - DUC PHAN
-    public List<Product> findTop20ProductGroup(Long startDate, Long endDate);
+    public List<Product> findTop20Product(Long startDate, Long endDate);
 
 //==========================================================================================
     public Page<Order> getOrdersByStatusAndSortByCreatedDateDesc(int status, int page, int size);
