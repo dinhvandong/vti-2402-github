@@ -3,6 +3,8 @@ package com.vti.loship.services;
 import com.vti.loship.database.SequenceGeneratorService;
 import com.vti.loship.models.Order;
 import com.vti.loship.models.OrderDetail;
+import com.vti.loship.models.Product;
+import com.vti.loship.models.ProductGroup;
 import com.vti.loship.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -83,6 +85,21 @@ public class OrderServiceIpm implements OrderService
 
 
 
+        return null;
+    }
+
+    @Override
+    public List<Order> findAllByDate(Long dateValue) {
+        return null;
+    }
+
+    @Override
+    public List<ProductGroup> findTop10ProductGroup(Long startDate, Long endDate) {
+        return null;
+    }
+
+    @Override
+    public List<Product> findTop20ProductGroup(Long startDate, Long endDate) {
         return null;
     }
 
